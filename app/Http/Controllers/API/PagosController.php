@@ -25,6 +25,7 @@ class PagosController extends BaseController
                 ->whereIn('ChEstado', ['', 'RE'])
                 ->orderBy('ChRecNcu')
                 ->first();
+            dd($cuotas);
             if ($cuotas === null) {
                 return $this->sendError('No se encuentran datos del Cliente');
             }
@@ -43,8 +44,8 @@ class PagosController extends BaseController
                 'monPun' => $TotalPun,
                 'monMor' => $TotalMor,
                 'montoTotal' => $montoTotal,
-                'diasAtraso' => $diasAtraso,
-                'comision' => $cuotas->ChPagCom,
+                //'diasAtraso' => $diasAtraso,
+                //'comision' => $cuotas->ChPagCom,
                 'PylCod' => trim($cuotas->PylCod),
                 'CliNop' => $cuotas->CliNop,
                 'CliSec' => $cuotas->CliSec,

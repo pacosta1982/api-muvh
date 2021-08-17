@@ -14,7 +14,7 @@ class PRMCHEQ extends Model
     protected $primaryKey = 'PylCod';
     public $timestamps = false;
     protected $connection = 'sqlsrv';
-    //public $incrementing = false;
+    public $incrementing = false;
 
     protected $fillable = [
         'PylCod',
