@@ -20,17 +20,11 @@ class PagosController extends BaseController
             return $this->sendError('El campo cedula es requerido');
         }
 
-        $cuotas = PRMCHEQ::where('PerCod', $cedula)
-            ->whereIn('ChEstado', ['', 'RE'])
-            ->orderBy('ChRecNcu')
-            ->first();
-        return ($cuotas);
         try {
             $cuotas = PRMCHEQ::where('PerCod', $cedula)
                 ->whereIn('ChEstado', ['', 'RE'])
                 ->orderBy('ChRecNcu')
                 ->first();
-            dd($cuotas);
             if ($cuotas === null) {
                 return $this->sendError('No se encuentran datos del Cliente');
             }
