@@ -69,7 +69,7 @@ class PagosController extends BaseController
             'PylCod' => 'required',
             'CliNop' => 'required',
             'CliSec' => 'required',
-            'ChRecNcu' => 'required',
+            'nroCuota' => 'required',
             'ChPagCod' => 'required',
             'ChPagCom' => 'required',
             'NumeroRecibo' => 'required',
