@@ -64,7 +64,7 @@ class PagosController extends BaseController
     {
         $input = $request->all();
         $validator = Validator::make($input, [
-            'cedula' => 'required',
+            'nroCedula' => 'required',
             //'nroCuota' => 'required',
             'PylCod' => 'required',
             'CliNop' => 'required',
@@ -75,7 +75,7 @@ class PagosController extends BaseController
             'NumeroRecibo' => 'required',
             'monPun' => 'required',
             'monMor' => 'required',
-            'PagotTotal' => 'required'
+            'PagoTotal' => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -84,8 +84,8 @@ class PagosController extends BaseController
 
 
 
-        $cuotas = PRMCHEQ::where('PerCod', $input['cedula'])
-            ->where('ChRecNcu', $input['ChRecNcu'])
+        $cuotas = PRMCHEQ::where('PerCod', $input['nroCedula'])
+            ->where('ChRecNcu', $input['nroCuota'])
             ->where('PylCod', $input['PylCod'])
             ->where('CliNop', $input['CliNop'])
             ->where('CliSec', $input['CliSec'])
@@ -95,7 +95,7 @@ class PagosController extends BaseController
                 'ChPagMor' => $input['monMor'],
                 'ChPagPun' => $input['monPun'],
                 'ChPagCom' => $input['ChPagCom'],
-                'ChPagTot' => $input['PagotTotal'],
+                'ChPagTot' => $input['PagoTotal'],
                 'ChPagFec' => date('Y-d-m'),
                 'ChPagFop' => date('Y-d-m H:i:s'),
                 'ChFecSis' => date('Y-d-m H:i:s'),
