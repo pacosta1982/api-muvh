@@ -121,6 +121,8 @@ class PagosController extends BaseController
             return $this->sendError($validator->errors());
         }
 
+        //return 'hola';
+
         $cuotas = PRMCHEQ::where('ChRecNrc', $input['NumeroRecibo'])
             ->where('ChEstado', 'PA')
             ->update(array(
@@ -136,8 +138,11 @@ class PagosController extends BaseController
                 'ChPagCod' => '',
                 'ChRecNrc' => 0
             ));
-
-        $data = array();
-        return $this->sendResponse($data, 'Reversado Correctamente');
+        if ($cuotas) {
+            $data = array();
+            return $this->sendResponse($data, 'Reversado Correctamente');
+        } else {
+            return $this->sendError('No se encuentra recibo.');
+        }
     }
 }
