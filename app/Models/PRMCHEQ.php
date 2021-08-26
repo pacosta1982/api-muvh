@@ -32,7 +32,8 @@ class PRMCHEQ extends Model
         'ChRecInt',
         'ChRecSeg',
         'ChRecCom',
-        'ChPagFec'
+        'ChPagFec',
+        'PerCod'
 
     ];
 

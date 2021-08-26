@@ -102,10 +102,16 @@ class PagosController extends BaseController
                 'ChPagCod' => $input['ChPagCod'],
                 'ChRecNrc' => $input['NumeroRecibo']
             ));
+        if ($cuotas) {
+            $data = array();
+            return $this->sendResponse($data, 'Procesado Correctamente');
+        } else {
+            return $this->sendError('No se realizo el pago.');
+        }
 
-        $data = array();
+        //$data = array();
 
-        return $this->sendResponse($data, 'Procesado Correctamente');
+        //return $this->sendResponse($data, 'Procesado Correctamente');
     }
 
     public function reversaCuota(Request $request)
@@ -123,8 +129,27 @@ class PagosController extends BaseController
 
         //return 'hola';
 
+        $ci = PRMCHEQ::where('ChRecNrc', $input['NumeroRecibo'])
+            ->first();
+
+        if ($ci) {
+            //$data = array();
+            //return $this->sendResponse($data, 'Reversado Correctamente');
+        } else {
+            return $this->sendError('No existe Recibo');
+        }
+        //return $ci[0]['PerCod'];
+
+
+        $last = PRMCHEQ::where('PerCod', $ci['PerCod'])
+            ->where('ChEstado', 'PA')
+            ->latest('ChRecNcu')->first();
+
+        //return $last;
+
         $cuotas = PRMCHEQ::where('ChRecNrc', $input['NumeroRecibo'])
             ->where('ChEstado', 'PA')
+            ->where('ChRecNcu', $last['ChRecNcu'])
             ->update(array(
                 'ChEstado' => 'RE',
                 'ChPagHora' => '',
@@ -142,7 +167,7 @@ class PagosController extends BaseController
             $data = array();
             return $this->sendResponse($data, 'Reversado Correctamente');
         } else {
-            return $this->sendError('No se encuentra recibo.');
+            return $this->sendError('No se pudo reversar, el recibo no corresponde a la ultima cuota pagada.');
         }
     }
 }
