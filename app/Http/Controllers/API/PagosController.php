@@ -43,6 +43,8 @@ class PagosController extends BaseController
                 'monPun' => $TotalPun,
                 'monMor' => $TotalMor,
                 'montoTotal' => $montoTotal,
+                'ChRecFvt' => $vencimiento->format("d/m/Y"),
+                'ChPerNom' => trim($cuotas->ChPerNom),
                 //'diasAtraso' => $diasAtraso,
                 //'comision' => $cuotas->ChPagCom,
                 'PylCod' => trim($cuotas->PylCod),
