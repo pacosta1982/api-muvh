@@ -88,7 +88,7 @@ class PagosController extends BaseController
 
         $cuotas = PRMCHEQ::where('PerCod', $input['nroCedula'])
             ->where('ChRecNcu', $input['nroCuota'])
-            ->where('PylCod', $input['PylCod'])
+            //->where('PylCod', $input['PylCod'])
             ->where('CliNop', $input['CliNop'])
             ->where('CliSec', $input['CliSec'])
             ->update(array(
