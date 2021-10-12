@@ -157,7 +157,7 @@ class PagosController extends BaseController
                 'ChPagHora' => '',
                 'ChPagMor' => 0,
                 'ChPagPun' => 0,
-                'ChPagCom' => 0,
+                //'ChPagCom' => 0,
                 'ChPagTot' => 0,
                 'ChPagFec' => null,
                 'ChPagFop' => null,
